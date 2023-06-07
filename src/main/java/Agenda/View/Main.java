@@ -69,7 +69,7 @@ public class Main {
         int escogido = -1;
         do {
             if(mostrarLista("Contactos", lista)) {
-                 escogido = pedirInt("Selecciona la id del contacto");
+                 escogido = pedirInt("Selecciona la id del contacto(Introduce -1 para salir)");
                 valid = Agenda.comprobarExiste(escogido);
                 if(escogido == -1) {
                     break;
