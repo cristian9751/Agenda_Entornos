@@ -144,7 +144,7 @@ public class Conexion {
             Statement stmt = conn.createStatement();
             return stmt.executeQuery(query);
         }catch (Exception e) {
-            return null;
+             return null;
         }
     }
 

@@ -7,34 +7,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Agenda {
+    private static Conexion con = new Conexion();
     public static List<Contacto> obtenerContactos() {
-        return Conexion.leerContactosBD();
+        con.conectarMySQL();
+        List<Contacto> res =  Conexion.leerContactosBD();
+        con.desconectarMySQL();
+        return res;
     }
 
 
     public static List<Contacto> buscarPorNombre(String nombre)  {
+        con.conectarMySQL();
         nombre = nombre.toUpperCase();
-        return Conexion.buscarPorNombre(nombre);
+        List<Contacto> res =  Conexion.buscarPorNombre(nombre);
+        con.desconectarMySQL();
+        return res;
     }
 
     public static List<Contacto> buscarPorEmail(String email) {
+        con.conectarMySQL();
         email = email.toUpperCase();
-        return Conexion.buscarPorEmail(email);
+        List<Contacto> res = Conexion.buscarPorEmail(email);
+        con.desconectarMySQL();
+        return res;
     }
 
     public static List<Contacto> buscarPorTelefono(String telefono) {
+        con.conectarMySQL();
         telefono = telefono.toUpperCase();
-        return Conexion.buscarPorTelefono(telefono);
+        List<Contacto> res =  Conexion.buscarPorTelefono(telefono);
+        con.desconectarMySQL();
+        return res;
     }
 
     public static void agregarContacto(String nombre, String telefono, String email) throws Exception {
+        con.conectarMySQL();
         Contacto nuevoContacto = new Contacto(nombre, telefono, email);
         if(Conexion.obtenerId(nuevoContacto) == -1) {
             Conexion.insertarBD(nuevoContacto);
             nuevoContacto.setId();
         } else {
+            con.desconectarMySQL();
             throw new Exception("El contacto ya existe");
         }
+
+        con.desconectarMySQL();
     }
 
     public static List<Contacto> busquedaGlobal(String busqueda) {
@@ -51,12 +68,18 @@ public class Agenda {
     }
 
     public static boolean eliminarContacto(int id) {
-        return Conexion.eliminarBD(id);
+        con.conectarMySQL();
+         boolean res = Conexion.eliminarBD(id);
+         con.desconectarMySQL();
+         return res;
     }
 
 
     public static boolean comprobarExiste(int id) {
-        return Conexion.comprobarExiste(id);
+        con.conectarMySQL();
+        boolean res = Conexion.comprobarExiste(id);
+        con.desconectarMySQL();
+        return res;
     }
 
 }
