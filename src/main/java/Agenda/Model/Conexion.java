@@ -65,7 +65,7 @@ public class Conexion {
 
     public static int obtenerId(Contacto contacto)  {
         int id = -1;
-        String query = "SELECT contactid FROM Contacts WHERE telephone = '" + contacto.getTelefono() +
+        String query = "SELECT contactid FROM CONTACTS WHERE telephone = '" + contacto.getTelefono() +
                 "' AND fullname = '" + contacto.getNombre() + "' AND email = '" + contacto.getEmail() + "'";
         ResultSet res = Consulta(query);
         try {
@@ -82,7 +82,7 @@ public class Conexion {
     }
 
     public static boolean comprobarExiste(int id) {
-        String query = "SELECT fullname FROM Contacts WHERE contactid = " + id;
+        String query = "SELECT fullname FROM CONTACTS WHERE contactid = " + id;
         boolean exists = false;
         try {
             ResultSet res = Consulta(query);
@@ -97,7 +97,7 @@ public class Conexion {
 
     public static void insertarBD(Contacto contacto) throws Exception {
       try  {
-          String query = " insert into contacts (fullname, telephone, email)"
+          String query = " insert into CONTACTS (fullname, telephone, email)"
                   + " values (?, ?, ?)";
           PreparedStatement preparedStatement = conn.prepareStatement(query);
           preparedStatement.setString(1, contacto.getNombre());
@@ -113,7 +113,7 @@ public class Conexion {
 
 
     public static boolean eliminarBD(int id)  {
-        String query = "DELETE FROM Contacts WHERE contactid = " + id;
+        String query = "DELETE FROM CONTACTS WHERE contactid = " + id;
         if(Consulta(query) == null) {
             return false;
         } else {
@@ -122,19 +122,19 @@ public class Conexion {
     }
 
     public static List<Contacto> buscarPorNombre(String nombre) {
-        String query = "SELECT fullname, telephone, email, contactid FROM contacts  WHERE fullname LIKE '%" + nombre +  "%'";
+        String query = "SELECT fullname, telephone, email, contactid FROM CONTACTS  WHERE fullname LIKE '%" + nombre +  "%'";
         ResultSet res = Consulta(query);
         return obtenerLista(res);
     }
 
     public static List<Contacto> buscarPorEmail(String email) {
-        String query = "SELECT fullname, telephone, email, contactid FROM contacts WHERE email LIKE '%" + email + "%'";
+        String query = "SELECT fullname, telephone, email, contactid FROM CONTACTS WHERE email LIKE '%" + email + "%'";
         ResultSet res = Consulta(query);
         return obtenerLista(res);
     }
 
     public static List<Contacto> buscarPorTelefono(String telefono)  {
-        String query = "SELECT fullname, telephone, email, contactid FROM contacts WHERE telephone LIKE '%" + telefono + "%'";
+        String query = "SELECT fullname, telephone, email, contactid FROM CONTACTS WHERE telephone LIKE '%" + telefono + "%'";
         ResultSet res = Consulta(query);
        return obtenerLista(res);
     }
