@@ -8,12 +8,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class CreateContactFrame extends OwnFrame {
+public class CreateContactFrame {
     private JTextField tfFullName;
     private JTextField tfEmail;
     private JButton btnOk;
     private JButton cancelButton;
     private JTextField tfTelephone;
-
+    private JPanel mainJPanel;
 
 }
