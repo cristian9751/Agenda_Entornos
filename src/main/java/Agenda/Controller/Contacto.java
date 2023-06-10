@@ -2,7 +2,10 @@ package Agenda.Controller;
 
 import Agenda.Model.Conexion;
 
-public class Contacto {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Contacto{
     private String nombre;
     private String telefono;
     private String email;
@@ -55,9 +58,7 @@ public class Contacto {
 
     @Override
     public String toString() {
-                return "ID: " + id + '\n' +
-                        "nombre='" + nombre + '\n' +
-                ", telefono=" + telefono + "\n" +
-                ", email='" + email + '\n';
+        return nombre;
     }
+
 }

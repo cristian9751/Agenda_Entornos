@@ -59,6 +59,7 @@ public class Conexion {
                 lista.add(contactoActual);
             }
         } catch (Exception e) {
+            lista.removeAll(lista);
         }
         return lista;
     }
