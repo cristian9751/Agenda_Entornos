@@ -60,5 +60,4 @@ public class Contacto{
     public String toString() {
         return nombre;
     }
-
 }
